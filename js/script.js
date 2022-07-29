@@ -26,7 +26,7 @@ const movieDB = {
 
 const promoAdv = document.querySelectorAll('.promo__adv img');
 const promoGenre = document.querySelector('.promo__genre');
-
+const promoBg = document.querySelector('.promo__bg');
 
 
 
@@ -41,3 +41,6 @@ promoAdv.forEach(item => {
 //2 задание
 promoGenre.innerHTML = ""; //Сделать элемент пустым
 promoGenre.innerHTML = "Драма"; //Добавить свой текст
+
+//3 заданин
+promoBg.style.backgroundImage = 'url(../img/bg.jpg)';

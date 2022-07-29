@@ -24,3 +24,15 @@ const movieDB = {
     ]
 };
 
+const promoAdv = document.querySelectorAll('.promo__adv img');
+
+
+
+
+
+
+
+// 1 Задание
+promoAdv.forEach(item => {
+    item.remove();
+});

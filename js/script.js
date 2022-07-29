@@ -25,7 +25,7 @@ const movieDB = {
 };
 
 const promoAdv = document.querySelectorAll('.promo__adv img');
-
+const promoGenre = document.querySelector('.promo__genre');
 
 
 
@@ -36,3 +36,8 @@ const promoAdv = document.querySelectorAll('.promo__adv img');
 promoAdv.forEach(item => {
     item.remove();
 });
+
+
+//2 задание
+promoGenre.innerHTML = ""; //Сделать элемент пустым
+promoGenre.innerHTML = "Драма"; //Добавить свой текст

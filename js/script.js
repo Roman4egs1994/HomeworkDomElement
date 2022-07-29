@@ -42,5 +42,5 @@ promoAdv.forEach(item => {
 promoGenre.innerHTML = ""; //Сделать элемент пустым
 promoGenre.innerHTML = "Драма"; //Добавить свой текст
 
-//3 заданин
+//3 задание
 promoBg.style.backgroundImage = 'url(../img/bg.jpg)';

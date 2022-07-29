@@ -27,7 +27,7 @@ const movieDB = {
 const promoAdv = document.querySelectorAll('.promo__adv img');
 const promoGenre = document.querySelector('.promo__genre');
 const promoBg = document.querySelector('.promo__bg');
-
+const promoList = document.querySelector('.promo__interactive-list');
 
 
 
@@ -39,8 +39,20 @@ promoAdv.forEach(item => {
 
 
 //2 задание
-promoGenre.innerHTML = ""; //Сделать элемент пустым
 promoGenre.innerHTML = "Драма"; //Добавить свой текст
 
 //3 задание
 promoBg.style.backgroundImage = 'url(../img/bg.jpg)';
+
+
+//4  и 5 задание
+promoList.innerHTML = ""; //Очистка всех фильмов
+movieDB.movies.sort(); //Сортировка
+
+movieDB.movies.forEach((film, i) => {
+    promoList.innerHTML += `
+    <li class="promo__interactive-item">${i+1} ${film}
+        <div class="delete"></div>
+    </li>
+    `;
+});

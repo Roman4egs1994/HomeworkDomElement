@@ -12,47 +12,100 @@
 
 5) Добавить нумерацию выведенных фильмов */
 
+/* Задания на урок:
+
+1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
+новый фильм добавляется в список. Страница не должна перезагружаться.
+Новый фильм должен добавляться в movieDB.movies.
+Для получения доступа к значению input - обращаемся к нему как input.value;
+P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
+
+2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
+
+3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
+
+4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
+"Добавляем любимый фильм"
+
+5) Фильмы должны быть отсортированы по алфавиту */
 'use strict';
 
-const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
-};
+document.addEventListener('DOMContentLoaded',  () => {
+    
+    
+    const movieDB = {
+        movies: [
+            "Логан",
+            "Лига справедливости",
+            "Ла-ла лэнд",
+            "Одержимость",
+            "Скотт Пилигрим против..."
+        ]
+    };
+    
+    const promoAdv = document.querySelectorAll('.promo__adv img');
+    const promoGenre = document.querySelector('.promo__genre');
+    const promoBg = document.querySelector('.promo__bg');
+    const promoList = document.querySelector('.promo__interactive-list');
+    const addForm = document.querySelector('form.add');
+    const addInput = addForm.querySelector('.adding__input');
+    const checkbox = addForm.querySelector('[type="checkbox"]');
+    
 
-const promoAdv = document.querySelectorAll('.promo__adv img');
-const promoGenre = document.querySelector('.promo__genre');
-const promoBg = document.querySelector('.promo__bg');
-const promoList = document.querySelector('.promo__interactive-list');
+    addForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const newFilm = addInput.value;
+        const favorite = checkbox.checked;
+
+        movieDB.movies.push(newFilm);
+        sortArr(movieDB.movies);
+
+        createMovieList(movieDB.movies, promoList);
+
+        event.target.reset();
+    });
+
+    // 1 Задание
+    const deleteAdv = (arr) => {
+        arr.forEach(item => {
+            item.remove();
+        });
+    };
+    
+    
+    const makeChanges = () => {
+        //2 задание
+        promoGenre.innerHTML = "Драма"; //Добавить свой текст
+    
+        //3 задание
+        promoBg.style.backgroundImage = 'url(../img/bg.jpg)';
+        };
+        
+        
+        //4  и 5 задание
+    const sortArr = (arr) => {
+        arr.sort();
+    };
+    
+    
+    
+
+    function createMovieList (films, parent) {
+        parent.innerHTML = ""; //Очистка всех фильмов
+
+        films.forEach((film, i) => {
+            parent.innerHTML += `
+            <li class="promo__interactive-item">${i+1} ${film}
+                <div class="delete"></div>
+            </li>
+            `;
+        });
+    }
 
 
-
-
-// 1 Задание
-promoAdv.forEach(item => {
-    item.remove();
-});
-
-
-//2 задание
-promoGenre.innerHTML = "Драма"; //Добавить свой текст
-
-//3 задание
-promoBg.style.backgroundImage = 'url(../img/bg.jpg)';
-
-
-//4  и 5 задание
-promoList.innerHTML = ""; //Очистка всех фильмов
-movieDB.movies.sort(); //Сортировка
-
-movieDB.movies.forEach((film, i) => {
-    promoList.innerHTML += `
-    <li class="promo__interactive-item">${i+1} ${film}
-        <div class="delete"></div>
-    </li>
-    `;
+    createMovieList(movieDB.movies, promoList);
+    deleteAdv(promoAdv);
+    makeChanges();
+    sortArr(movieDB.movies);
 });

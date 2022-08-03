@@ -63,8 +63,12 @@ document.addEventListener('DOMContentLoaded',  () => {
             if (newFilm.length > 21) {
                 newFilm = `${newFilm.substring(0, 22)}...`;
             } 
+        
+        if(favorite) {
+            console.log("Добавляем любимый фильм");
+        }   
 
-            movieDB.movies.push(newFilm);
+        movieDB.movies.push(newFilm);
         sortArr(movieDB.movies);
 
         createMovieList(movieDB.movies, promoList);
@@ -102,7 +106,7 @@ document.addEventListener('DOMContentLoaded',  () => {
 
     function createMovieList (films, parent) {
         parent.innerHTML = ""; //Очистка всех фильмов
-
+        sortArr(films);
         films.forEach((film, i) => {
             parent.innerHTML += `
             <li class="promo__interactive-item">${i+1} ${film}
@@ -125,5 +129,5 @@ document.addEventListener('DOMContentLoaded',  () => {
     createMovieList(movieDB.movies, promoList);
     deleteAdv(promoAdv);
     makeChanges();
-    sortArr(movieDB.movies);
+    
 });
